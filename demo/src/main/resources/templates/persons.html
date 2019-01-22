@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Default title for my pages</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="/css/style.css" />-->
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Pilot Project MVC</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/persons">Home</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div class="starter-template" layout:fragment="content">
+
+        <!--<div th:if="${not #lists.isEmpty(persons)}">-->
+            <h2>Person List</h2>
+            <form action="/persons">
+                <div class="from-row" style="display: flex">
+                    <div class="col">
+                        <label>Search filters :</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" name="name" class="form-control" placeholder="type a name" th:value="${filter.name}">
+                    </div>
+                    <div class="col">
+                        <input type="date" name="date" class="form-control" placeholder="Select date" th:value="${filter.date}">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Date added</th>
+                    <th>Actions</th>
+                </tr>
+                <tr th:each="person : ${persons}">
+                    <td th:text="${person.id}"></td>
+                    <td th:text="${person.name}"></td>
+                    <td th:text="${person.dateAdded}"></td>
+                    <td>
+                        <a th:href="${'/edit/' + person.id}" class="btn btn-lg btn-primary btn-sm">
+                            Edit
+                        </a>
+                        <a th:href="${'/delete/' + person.id}" class="btn btn-lg btn-primary btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <div class="row" th:fragment="pagination">
+                <nav aria-label="Pagination">
+                    <ul class="pagination">
+                        <li class="page-item" th:each="pageNumber : ${pageNumbers}" >
+                            <a class="page-link" th:href="@{/persons(name=${filter.name},date=${filter.date},
+                                                        size=${persons.size}, page=${pageNumber})}" th:text="${pageNumber}"/>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <hr/>
+            <h3>
+                <a href="/create" class="btn btn-lg btn-primary btn-sm">
+                    Add person
+                </a>
+            </h3>
+        <!--</div>-->
+    </div>
+</div><!-- /.container -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
+
