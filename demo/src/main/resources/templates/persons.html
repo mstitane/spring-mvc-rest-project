@@ -43,7 +43,7 @@
                         <input type="text" name="name" class="form-control" placeholder="type a name" th:value="${filter.name}">
                     </div>
                     <div class="col">
-                        <input type="date" name="date" class="form-control" placeholder="Select date" th:value="${filter.date}">
+                        <input type="date" name="date" class="form-control" placeholder="Select date" th:value="${#dates.format(filter.date, 'yyyy-MM-dd')}" />
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-success btn-sm">Search</button>
@@ -75,7 +75,7 @@
                 <nav aria-label="Pagination">
                     <ul class="pagination">
                         <li class="page-item" th:each="pageNumber : ${pageNumbers}" >
-                            <a class="page-link" th:href="@{/persons(name=${filter.name},date=${filter.date},
+                            <a class="page-link" th:href="@{/persons(name=${filter.name},date=${#dates.format(filter.date, 'yyyy-MM-dd')},
                                                         size=${persons.size}, page=${pageNumber})}" th:text="${pageNumber}"/>
                         </li>
                     </ul>

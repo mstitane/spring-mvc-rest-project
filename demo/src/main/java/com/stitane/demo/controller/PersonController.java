@@ -37,8 +37,8 @@ public class PersonController {
             @RequestParam("page") Optional<Integer> page,
             @RequestParam("size") Optional<Integer> size) {
         FilterDTO filter = new FilterDTO();
-        name.ifPresent(filter::setName);
-        date.ifPresent(filter::setDate);
+        filter.setName(name.orElse(null));
+        filter.setDate(date.orElse(null));
         model.addAttribute("filter", filter);
 
         int currentPage = page.orElse(1);
