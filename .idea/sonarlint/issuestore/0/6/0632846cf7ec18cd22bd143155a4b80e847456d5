@@ -1,0 +1,7 @@
+
+usquid:S11920"RDefine a constant instead of duplicating this literal "redirect:/persons" 3 times.(ß”ëòÿÿÿÿÿ8ª…ã¬‡-
+V
+squid:S106M"9Replace this use of System.out or System.err by a logger.(»ëòˆ8ÃÚò®‡-
+ksquid:S1192 "HDefine a constant instead of duplicating this literal "persons" 4 times.(°¸ƒÿÿÿÿÿ8íÍ÷­‡-
+€squid:UselessImportCheck"PRemove this unused import 'org.springframework.web.bind.annotation.PostMapping'.(äƒà°ùÿÿÿÿ8¾ñÅ®‡-
+~squid:UselessImportCheck"SRemove this unused import 'org.springframework.web.bind.annotation.ModelAttribute'.(®ùæé8ñ±’¯‡-
